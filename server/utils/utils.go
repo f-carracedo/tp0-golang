@@ -15,6 +15,7 @@ type Paquete struct {
 }
 
 func RecibirPaquetes(w http.ResponseWriter, r *http.Request) {
+	log.Println("me llego un paquete de un cliente")
 	decoder := json.NewDecoder(r.Body)
 	var paquete Paquete
 	err := decoder.Decode(&paquete)
@@ -46,6 +47,12 @@ func RecibirMensaje(w http.ResponseWriter, r *http.Request) {
 	log.Println("Me llego un mensaje de un cliente")
 	log.Printf("%+v\n", mensaje)
 
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("ok"))
+}
+
+func Saludar(w http.ResponseWriter, r *http.Request) {
+	log.Println("Me llego una solicitud de prueba")
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("ok"))
 }
